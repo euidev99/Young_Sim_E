@@ -1,0 +1,47 @@
+6번
+정보찾기
+df.info() 로 정보찾기
+df['칼럼'].mean() 평균찾기
+df['칼럼'].mode() 최빈값찾기
+코드
+df.isnull.sum() 결측치 찾기
+df['칼럼'].fillna(채울값, inplace=True) , 문자는 ''해주기
+df_1=df ,저장
+
+7번
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+label_list=['칼럼']
+for col in label_list:
+    df_1[col]=le.fit_transform(df_1[col])     -> 그대로    
+df_1.drop(columns=['지울칼럼'], inplace=True) , 삭제
+df_2=df_1,저장
+
+8번
+df_2.info를 통해 정보 찾기 , 범주형 데이터는 object다
+df_3=pd.get_dummies(df_2,columns=['칼럼'],drop_first=True)
+
+#df_3.info를 보자 다 숫자가 됐는지를 보자
+
+9번
+X = df_3.drop(xlumns=['칼럼'])
+y = df_3['칼럼']
+from sklearn.model_selection import train_test_split
+X_train, X_valid, y_train, y_valid = train_test_split(X,y, test_size=0.2, random_state=42) // 8대2 비율이라 0.2, 랜덤 정하는데로하기
+
+10번
+복붙
+
+11번
+from sklearn.ensemble import RandomForestClassifier //임포트에 쓰이는거 맞춰서 쓰기
+rf = RandomForestClassifie(n_estimators=100,max_depth=5, max_feature=9, random_state=42) //n=결정트리갯수
+rf.fit(X_train, y_train) //학습
+
+12번
+복붙
+
+13번
+복붙
+
+14번
+복붙  inputshape는 열의 갯수
